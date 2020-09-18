@@ -7,24 +7,27 @@ import martian_scrape
 app = Flask(__name__)
 
 #Using flask_pymongo to set up mongo connect
-app.config["MONGO_URI"] = "mongodb://localhost:8805/mars_app"
+app.config["MONGO_URI"] = "mongodb://localhost:8805/martian_flask_app"
 mongo = PyMongo(app)
 
 #Route to configure index.html template with Mongo data
 @app.route("/")
 def index():
     #Finding one record from mongodb
-    martian_dict = mongo.db.martian_dict.find_one()
+    mars_dict = mongo.db.mars_dict.find_one()
+    
     #Return template with data
-    return render_template("index.html", mars = martian_dict)
+    return render_template("index.html", mars = mars_dict)
 
 @app.route("/scrape")
 def scrape():
-    martian_dict = mongo.db.martian_dict
-    martian_data = martian_scrape.scrape()
+    mars_dict = mongo.db.mars_dict
+    mars_data = martian_scrape.scrape()
+    
     #Updating Mongodb using update and upsert
-    martian_dic.update({}, martian_data, upsert=True)
+    mars_dict.update({}, mars_data, upsert=True)
+    
     return redirect("/", code = 302)
 
-if __name__ == "__main__"
+if __name__ == "__main__":
     app.run(debug=True)

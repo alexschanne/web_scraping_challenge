@@ -52,7 +52,7 @@ def scrape():
     martian_hemis = all_martian_hemis.find_all('div', class_='item')
     hemis_image_urls = []
     # Iterate through each hemisphere data
-    for i in mars_hemis:
+    for i in martian_hemis:
         # Collect Title
         hemis = i.find('div', class_="description")
         title = hemis.h3.text        
@@ -70,7 +70,7 @@ def scrape():
         hemis_image_urls.append(image_dict)
 
     # Mars 
-    martian_dict = {
+    mars_dict = {
         "news_title": news_title,
         "news": news,
         "featured_image_url": featured_image,
@@ -78,4 +78,4 @@ def scrape():
         "hemisphere_images": hemis_image_urls
     }
 
-    return martian_dict
+    return mars_dict
