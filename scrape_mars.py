@@ -41,7 +41,8 @@ def scrape():
     #Creating dataframe from tables
     mars_facts = tables[2]
     mars_facts.columns = ["Description", "Value"]
-    
+    mars_facts.reset_index(drop = True)
+
     mars_html_tbl = mars_facts.to_html()
     mars_html_tbl.replace('\n', '')
     
@@ -88,9 +89,11 @@ def scrape():
         "fact_table": str(mars_html_tbl),
         "hemisphere_images": hemis_image_urls
     }
+    #Close the browser after scraping
+    browser.quit()
 
     return mars_dict
-    # Close the browser after scraping
-#    browser.quit()
+    #Close the browser after scraping
+    #browser.quit()
 #if __name__ == '__main__':
 #    scrape()
