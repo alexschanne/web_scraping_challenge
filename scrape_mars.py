@@ -15,7 +15,7 @@ def scrape():
     #mars_dict ={}
 
     #Mars News URL
-    news_url = 'https://www.mars.nasa.gov/news/'
+    news_url = 'https://mars.nasa.gov/news/'
     browser.visit(news_url)
     html = browser.html
     news_soup = BeautifulSoup(html, 'html.parser')
@@ -89,10 +89,8 @@ def scrape():
         "hemisphere_images": hemis_image_urls
     }
 
-    # Close the browser after scraping
-    browser.quit()
-
     return mars_dict
-
+    # Close the browser after scraping
+#    browser.quit()
 #if __name__ == '__main__':
 #    scrape()
